@@ -74,7 +74,6 @@ P002 uses the captured BIN `22022` unchanged. Other five-digit BINs are accepted
 
 The agent does not read iframes or shadow DOM. Downloaded receipts support UTF-8 text/JSON; PDFs and other formats escalate. Reviewed Spanish actions and Member ID label variants are supported; this is not general translation. Unknown required fields and ambiguous choices escalate. Portal data resets when the server restarts. Use a fresh test ledger only when intentionally resetting the synthetic portal; do not clear an uncertain live submission.
 
-See [WRITEUP.md](WRITEUP.md) for design decisions. Extra stress scenarios are defined in `tests/run_hard_b.py` and `tests/run_fresh_b.py`.
 
 <details>
 <summary>Portal A scenarios and expected responses</summary>
