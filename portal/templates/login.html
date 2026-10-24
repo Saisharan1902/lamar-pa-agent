@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Sign in{% endblock %}
+{% block page %}login{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <h1>Sign in</h1>
+  <p class="muted">Prior authorization requests for prescribers and their staff.</p>
+  {% if expired %}<div class="notice warn" role="status">Your session expired. Sign in again to continue.</div>{% endif %}
+  {% if error %}<div class="notice error" role="alert">{{ error }}</div>{% endif %}
+  <form method="post" action="{{ url_for('login') }}">
+    <div class="field">
+      <label for="{{ fid('username') }}">Username</label>
+      <input type="text" id="{{ fid('username') }}" name="username" autocomplete="username">
+    </div>
+    <div class="field">
+      <label for="{{ fid('password') }}">Password</label>
+      <input type="password" id="{{ fid('password') }}" name="password" autocomplete="current-password">
+    </div>
+    <div class="card-actions">
+      <a class="btn-text" href="#">Forgot password?</a>
+      <span class="spacer"></span>
+      <button type="submit" class="btn-primary">Sign In</button>
+    </div>
+  </form>
+</section>
+{% endblock %}
+{% block modals %}
+{% if on('maintenance_notice') %}
+<div class="backdrop" data-modal="maintenance">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt-title">
+    <h2 id="mt-title">Scheduled maintenance</h2>
+    <p>CoverRx will be unavailable on Sunday from 1:00 AM to 5:00 AM ET for scheduled maintenance.
+       Requests in progress during that window will need to be restarted.</p>
+    <div class="modal-actions"><button type="button" class="btn-primary" data-close>Acknowledge</button></div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

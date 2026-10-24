@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Usage: ./run_agent --portal-url <URL> --patient <patient.json> --out <result.json>
+set -euo pipefail
+cd "$(dirname "$0")" >/dev/null && ROOT="$(pwd)" && cd - >/dev/null
+PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}" exec "${PYTHON:-python3}" -m agent.cli "$@"

@@ -1,0 +1,14 @@
+{
+  "case_id": "P002_clean_male_other_bin",
+  "notes": "Clean variant. BIN/PCN pair taken from the Navitus form's supported list seen in the trace (22022 / 7104).",
+  "medication_search": "Simponi Aria",
+  "first_name": "Marcus",
+  "last_name": "Ellison",
+  "sex": "M",
+  "date_of_birth": "04/02/1975",
+  "patient_zip": "53703",
+  "insurance_state": "WI",
+  "rx_bin": "22022",
+  "rx_pcn": "7104",
+  "rx_group": "GRP4421"
+}

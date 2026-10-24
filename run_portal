@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Usage: ./run_portal [--port 5055]      then open http://localhost:5055/?scenarios=...
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+exec "${PYTHON:-python3}" "$ROOT/portal/app.py" "$@"

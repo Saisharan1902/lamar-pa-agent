@@ -1,0 +1,14 @@
+{
+  "case_id": "P003_clean_hyphen_name",
+  "notes": "Clean variant with hyphenated/apostrophe name and no PCN (trace showed forms loading with BIN only).",
+  "medication_search": "Simponi Aria",
+  "first_name": "Anne-Marie",
+  "last_name": "O'Brien",
+  "sex": "F",
+  "date_of_birth": "09/18/1968",
+  "patient_zip": "74055",
+  "insurance_state": "OK",
+  "rx_bin": "610602",
+  "rx_pcn": "",
+  "rx_group": ""
+}

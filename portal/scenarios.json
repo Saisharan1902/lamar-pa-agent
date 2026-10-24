@@ -1,0 +1,40 @@
+{
+  "defaults": ["chat_widget"],
+  "popups": {
+    "chat_widget":          "'3 FAQs' + 'Chat With Support' widget fixed over the Continue button, as in the trace. FAQs opens a non-modal 'Support FAQs & Resources' panel.",
+    "announcement":         "Product-announcement lightbox on load ('What's new'), like the Pendo guides captured in the trace.",
+    "bottom_banner":        "Important-message banner fixed to the bottom of the page with a close (x) button.",
+    "maintenance_notice":   "Modal on the login page announcing a maintenance window; must be acknowledged.",
+    "session_warning":      "'Your session is about to expire' modal 1s after the patient card opens; signs you out after 15s if ignored.",
+    "session_warning_late": "Same modal, 3.5s after the patient card opens, i.e. while the agent is filling it.",
+    "survey_overlay":       "'How are we doing?' survey covering the form list when it first loads."
+  },
+  "edge_cases": {
+    "slow_drug_search":     "Medication search answers after 2.5s.",
+    "slow_forms":           "Form search shows a spinner for 3s before results appear.",
+    "random_ids":           "Every element id is randomized on each page load (labels still work).",
+    "native_dates":         "Date of Birth becomes a native <input type=date> (ISO only).",
+    "state_not_prefilled":  "The insurance card's state dropdown is NOT pre-filled from the patient card; it is a custom searchable dropdown.",
+    "duplicate_patient":    "After the patient card: 'This patient may already exist in your Patient Address Book' dialog.",
+    "session_expiry":       "Session expires when the patient card is submitted; back to login, form state lost.",
+    "flaky_start":          "First 'Start Request' fails with 'request was not created, please try again'; the retry works.",
+    "start_fails":          "'Start Request' ends on a failure page: the plan does not accept ePA for this member.",
+    "no_forms":             "Form search returns no forms for the entered insurance.",
+    "payer_eligibility":    "Before the forms: 'Check pharmacy benefits eligibility?' with 'No, Proceed to PA Forms' (handled by Lamar's own automation).",
+    "therapeutic_alternatives": "After Start Request: plan-preferred alternatives table; 'Continue Prior Auth' keeps the prescribed drug.",
+    "existing_pa":          "After Start Request: 'EXISTING PA INFORMATION' modal, status Sent to Plan, with 'Continue With New PA'.",
+    "existing_pa_expired":  "Same modal, but the existing PA's status is Expired.",
+    "request_page_error":   "The request page's first load fails with 'Error loading Request / Unable to load key ...' (HTTP 500); a reload works.",
+    "native_confirm":       "Start Request opens a native browser confirm() ('Start a new prior authorization request for ...?').",
+    "other_state_forms_first": "Forms naming Colorado or Texas are listed first, above the Navitus Commercial form.",
+    "review_step":          "Start PA opens a 'Review your request' page; nothing is created until 'Submit Request' is clicked there.",
+    "review_validation":    "With review_step: the review page rejects the ZIP ('outside the service area of the selected plan') only when Submit is clicked."
+  },
+  "always_on": {
+    "medication_autocomplete": "Medication must be picked from the list (as in the trace); an NDC with no match shows 'No Results'.",
+    "skippable_diagnosis":     "Primary Diagnosis card: Continue stays disabled until a diagnosis is chosen; 'Enter This Later' skips it (the trace did this).",
+    "progressive_cards":       "Cards appear one after another on a single page; the URL never changes until a request is created.",
+    "live_form_search":        "Forms reload as RxBIN / RxPCN / RxGroup are typed; 1 recommended form plus 'Show N More'.",
+    "field_validation":        "Patient card and insurance fields are validated by the server with field-level messages."
+  }
+}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Request could not be started{% endblock %}
+{% block page %}failed{% endblock %}
+{% block content %}
+<section class="card result failure" data-result="failure">
+  <div class="result-mark" aria-hidden="true">!</div>
+  <h1>We couldn't start this request</h1>
+  <p role="alert"><b>Reason:</b> {{ f.reason }}</p>
+  <p class="muted">Reference: {{ ref }}. No request was created in your dashboard.</p>
+  <a class="btn-primary" href="{{ url_for('formpick') }}">Start a new request</a>
+</section>
+{% endblock %}

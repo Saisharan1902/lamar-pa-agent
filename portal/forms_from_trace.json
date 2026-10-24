@@ -1,0 +1,136 @@
+[
+ {
+  "id": 67652,
+  "title": "Navitus Health Solutions Commercial Exception to Coverage Request Form",
+  "directions": "For Exception to Coverage Requests for Navitus Health Solutions Commercial Members",
+  "benefit": "PHARMACY BENEFIT",
+  "bin": [
+   "15921",
+   "16127",
+   "20974",
+   "22022",
+   "610602"
+  ],
+  "pcn": [
+   "5104",
+   "5304",
+   "6104",
+   "6304",
+   "7104",
+   "7304",
+   "8104",
+   "9304",
+   "CWHS",
+   "DHE",
+   "etf",
+   "ICS",
+   "NVT"
+  ],
+  "is_epa": true
+ },
+ {
+  "id": 63713,
+  "title": "Colorado Access Injectable Medication Form",
+  "directions": "Colorado Access Prior Authorization Form for Injectable Medication Requests",
+  "benefit": "MEDICAL AND PHARMACY BENEFIT",
+  "bin": [
+   "610602"
+  ],
+  "pcn": [
+   "NVT"
+  ],
+  "is_epa": false
+ },
+ {
+  "id": 65912,
+  "title": "Navitus Health Solutions Texas Medicaid Simponi Prior Authorization Form",
+  "directions": "Prior Authorization Form for Simponi (golimumab) for Navitus Health Solutions Texas Medicaid Members",
+  "benefit": "MEDICAL AND PHARMACY BENEFIT",
+  "bin": [],
+  "pcn": [],
+  "is_epa": false
+ },
+ {
+  "id": 65665,
+  "title": "Navitus Health Solutions Colorado Access Medicaid Exception to Coverage Request Form",
+  "directions": "Coverage Determination Request Form for Colorado Access Medicaid Members",
+  "benefit": "PHARMACY BENEFIT",
+  "bin": [
+   "610602"
+  ],
+  "pcn": [
+   "NVT"
+  ],
+  "is_epa": false
+ },
+ {
+  "id": 65855,
+  "title": "Navitus Health Solutions Texas Medicaid Standard Prior Authorization Request Form",
+  "directions": "Prior Authorization Form for Prescription Drugs for Navitus Health Solutions Texas Medicaid Members",
+  "benefit": "MEDICAL AND PHARMACY BENEFIT",
+  "bin": [
+   "610602"
+  ],
+  "pcn": [
+   "MCD",
+   "NVT",
+   "CHX"
+  ],
+  "is_epa": false
+ },
+ {
+  "id": 68270,
+  "title": "LA Care Health Plan California Commercial and Exchange Prescription Drug Prior Authorization or Step Therapy Exception Request Form",
+  "directions": "Prior Authorization for LA Care Health Plan - LA Care Covered and PASC-SEIU Plan Members",
+  "benefit": "PHARMACY BENEFIT",
+  "bin": [
+   "610602"
+  ],
+  "pcn": [
+   "NVT"
+  ],
+  "is_epa": true
+ },
+ {
+  "id": 65856,
+  "title": "Navitus Health Solutions Texas Medicaid Exception to Coverage Request Form",
+  "directions": "Exception to Coverage Request Form for Navitus Health Solutions Texas Medicaid Members (for Quantity Limit or High Dose Exception Requests ONLY)",
+  "benefit": "PHARMACY BENEFIT",
+  "bin": [
+   "610602"
+  ],
+  "pcn": [
+   "CHX",
+   "MCD",
+   "NVT"
+  ],
+  "is_epa": false
+ },
+ {
+  "id": 66712,
+  "title": "Moda Health Commercial and Marketplace Prior Authorization Request Form",
+  "directions": "Pharmacy prior authorizations for Moda Health Commercial and Marketplace Members",
+  "benefit": "PHARMACY BENEFIT",
+  "bin": [
+   "610602"
+  ],
+  "pcn": [
+   "NVT"
+  ],
+  "is_epa": true
+ },
+ {
+  "id": 68117,
+  "title": "Navitus Health Solutions Medicare Exception to Coverage Request Form",
+  "directions": "For Exception to Coverage Requests for Navitus Health Solutions Medicare Members",
+  "benefit": "PHARMACY BENEFIT",
+  "bin": [
+   "610602"
+  ],
+  "pcn": [
+   "EGWP",
+   "NVTD"
+  ],
+  "is_epa": true
+ }
+]

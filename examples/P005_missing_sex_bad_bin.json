@@ -1,0 +1,13 @@
+{
+  "case_id": "P005_missing_sex_bad_bin",
+  "notes": "Should ESCALATE: sex missing and RxBIN is not 6 digits.",
+  "medication_search": "Simponi Aria",
+  "first_name": "James",
+  "last_name": "Whitaker",
+  "date_of_birth": "01/15/1990",
+  "patient_zip": "74055",
+  "insurance_state": "OK",
+  "rx_bin": "61060",
+  "rx_pcn": "NVT",
+  "rx_group": ""
+}

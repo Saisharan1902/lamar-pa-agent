@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Prior Authorization{% endblock %} | CoverRx</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body data-page="{% block page %}{% endblock %}">
+<header class="topbar">
+  <a class="brand" href="/" aria-label="CoverRx home"><span class="b1">cover</span><span class="b2">rx</span></a>
+  {% if session.get('user') %}
+  <nav class="toplinks" aria-label="Account">
+    <span>Your Preferences</span><span>Verify Prescribers</span><span>Help</span><span>Privacy &amp; Terms</span>
+    <span>Logged in as {{ session.get('user') }}</span>
+    <a href="{{ url_for('logout') }}">Log Out</a>
+  </nav>
+  {% endif %}
+</header>
+
+{% if session.get('user') %}
+<aside class="sidenav" aria-label="Main">
+  <a class="sn active" href="{{ url_for('formpick') }}">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+    <span>Requests</span></a>
+  <a class="sn" href="#">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h9l3 3v13H6z"/><path d="M9 11l6 6M15 11l-6 6"/></svg>
+    <span>Cases</span></a>
+  <div class="sn-spacer"></div>
+  <a class="sn" href="#">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 15-5 16 0"/></svg>
+    <span>Account</span></a>
+  <a class="sn" href="{{ url_for('logout') }}">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4H5v16h9M10 12h11M17 8l4 4-4 4"/></svg>
+    <span>Logout</span></a>
+</aside>
+{% endif %}
+
+<main class="main {% if session.get('user') %}with-nav{% endif %} {% block mainclass %}{% endblock %}">
+  {% block content %}{% endblock %}
+  <p class="footnote">CoverRx provides forms to users of this service regardless of drug, brand, plan or other relationship
+    (business or otherwise). If a form is unavailable, incorrect, or if you have questions, please contact us:
+    <a href="#">(866) 452-5017</a>. Synthetic portal for testing; no real patient data.</p>
+</main>
+
+{% block modals %}{% endblock %}
+
+{% if session.get('user') %}
+  {% if on('announcement') %}
+  <div class="backdrop" data-modal="announcement">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="an-title">
+      <button type="button" class="x" aria-label="Close" data-close>&times;</button>
+      <h2 id="an-title">What's new in CoverRx</h2>
+      <p>You can now see the status of every request from the Cases tab, and get alerts when a plan responds.</p>
+      <div class="modal-actions"><button type="button" class="btn-primary" data-close>Got it</button></div>
+    </div>
+  </div>
+  {% endif %}
+  {% if on('bottom_banner') %}
+  <div class="bottom-banner" role="region" aria-label="Important message" data-widget="banner">
+    <p><b>Important message:</b> Some plans changed their ePA forms on October 1. Use the forms suggested below.</p>
+    <button type="button" class="x light" aria-label="Close message" data-dismiss="banner">&times;</button>
+  </div>
+  {% endif %}
+  {% if on('chat_widget') %}
+  <div class="chat-widget" data-widget="chat">
+    <button type="button" class="faq-bubble" data-action="faqs"><b>3</b> FAQs</button>
+    <button type="button" class="chat-btn">Chat With Support</button>
+    <button type="button" class="chat-close" aria-label="Close chat" data-dismiss="chat">&times;</button>
+  </div>
+  <div class="faq-panel" role="dialog" aria-modal="false" aria-label="Support FAQs &amp; Resources" data-panel="faqs" hidden>
+    <h2>Support FAQs &amp; Resources</h2>
+    <ul><li>How do I find the right form?</li><li>What is an ePA?</li><li>How do I check a request's status?</li></ul>
+    <button type="button" class="btn-text" data-close-panel>Close</button>
+  </div>
+  {% endif %}
+{% endif %}
+<script src="{{ url_for('static', filename='common.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

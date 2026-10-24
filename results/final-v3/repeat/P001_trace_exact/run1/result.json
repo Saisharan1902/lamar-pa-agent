@@ -1,0 +1,59 @@
+{
+  "confirmation_id": "4P36HRN2",
+  "escalation": null,
+  "fields_filled": {
+    "date_of_birth": {
+      "label": "Date of Birth",
+      "value": "**/**/1986"
+    },
+    "first_name": {
+      "label": "First Name",
+      "value": "T***"
+    },
+    "last_name": {
+      "label": "Last Name",
+      "value": "T***"
+    },
+    "medication_search": {
+      "label": "Search for medication name or NDC number",
+      "value": "Simponi Aria 50MG/4ML solution"
+    },
+    "patient_zip": {
+      "label": "Patient Zip Code",
+      "value": "74055"
+    },
+    "rx_bin": {
+      "label": "RxBIN",
+      "value": "610602"
+    },
+    "rx_pcn": {
+      "label": "RxPCN Number",
+      "value": "NVT"
+    },
+    "sex": {
+      "label": "Gender",
+      "value": "Female"
+    }
+  },
+  "form_selection": {
+    "alternatives": [
+      "Moda Health Commercial and Marketplace Prior Authorization Request Form",
+      "Navitus Health Solutions Medicare Exception to Coverage Request Form"
+    ],
+    "candidates": 9,
+    "checked_against": "page and portal data",
+    "chosen": "Navitus Health Solutions Commercial Exception to Coverage Request Form",
+    "policy": "first",
+    "position": 1,
+    "skipped_other_state": [
+      "Colorado Access Injectable Medication Form",
+      "Navitus Health Solutions Texas Medicaid Simponi Prior Authorization Form",
+      "Navitus Health Solutions Colorado Access Medicaid Exception to Coverage Request Form",
+      "Navitus Health Solutions Texas Medicaid Standard Prior Authorization Request Form",
+      "LA Care Health Plan California Commercial and Exchange Prescription Drug Prior Authorization or Step Therapy Exception Request Form",
+      "Navitus Health Solutions Texas Medicaid Exception to Coverage Request Form"
+    ]
+  },
+  "reason": "Prior authorization request created; the portal returned its reference number.",
+  "status": "SUCCESS"
+}

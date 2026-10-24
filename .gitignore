@@ -1,0 +1,11 @@
+__pycache__/
+.agent_state/
+.pytest_cache/
+*.pyc
+/out/
+
+# the Playwright trace holds live session cookies; never commit it
+*.zip
+14316/
+.venv/
+.DS_Store

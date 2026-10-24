@@ -1,0 +1,30 @@
+{% extends "base.html" %}{% from "_field.html" import text with context %}
+{% block main %}
+<h1>Who is this request for?</h1>
+<form method="post" novalidate>
+  {{ text('fn', 'Legal first name', f, errs) }}
+  {{ text('ln', 'Legal last name', f, errs) }}
+  {% set de = rid('dob-err') %}
+  <fieldset {% if errs.get('dob') %}aria-describedby="{{ de }}"{% endif %}>
+    <legend>Date of birth *</legend>
+    <div class="dob">
+      {% for n, lab in [('dm', 'Month (MM)'), ('dd', 'Day (DD)'), ('dy', 'Year (YYYY)')] %}
+      {% set i = rid(n) %}
+      <div><label for="{{ i }}">{{ lab }}</label><input type="text" id="{{ i }}" name="{{ n }}" value="{{ f.get(n, '') }}" required inputmode="numeric"></div>
+      {% endfor %}
+    </div>
+    {% if errs.get('dob') %}<p class="err" role="alert" id="{{ de }}">{{ errs['dob'] }}</p>{% endif %}
+  </fieldset>
+  {% set se = rid('sx-err') %}
+  <fieldset {% if errs.get('sx') %}aria-describedby="{{ se }}"{% endif %}>
+    <legend>Sex *</legend>
+    {% for v, lab in [('female', 'Female'), ('male', 'Male'), ('other', 'Unknown / other')] %}
+    {% set i = rid('sx') %}
+    <div><input type="radio" id="{{ i }}" name="sx" value="{{ v }}" {% if f.get('sx') == v %}checked{% endif %} required> <label for="{{ i }}">{{ lab }}</label></div>
+    {% endfor %}
+    {% if errs.get('sx') %}<p class="err" role="alert" id="{{ se }}">{{ errs['sx'] }}</p>{% endif %}
+  </fieldset>
+  {{ text('zp', 'Home ZIP', f, errs) }}
+  <div class="actions"><a class="ghost" href="/request/patient">Cancel</a><button class="btn" type="submit">Next</button></div>
+</form>
+{% endblock %}

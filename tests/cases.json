@@ -1,0 +1,719 @@
+{
+  "today": "2026-11-02",
+  "samples_file": "sample_patients.json",
+  "default_record": "P001_trace_exact",
+  "cases": [
+    {
+      "name": "P001_trace_exact",
+      "group": "sample",
+      "record": "P001_trace_exact",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "P002_clean_male_other_bin",
+      "group": "sample",
+      "record": "P002_clean_male_other_bin",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "P003_clean_hyphen_name",
+      "group": "sample",
+      "record": "P003_clean_hyphen_name",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "P004_bad_dob_and_zip",
+      "group": "sample",
+      "record": "P004_bad_dob_and_zip",
+      "expect": "ESCALATED",
+      "field": "date_of_birth"
+    },
+    {
+      "name": "P005_missing_sex_bad_bin",
+      "group": "sample",
+      "record": "P005_missing_sex_bad_bin",
+      "expect": "ESCALATED",
+      "field": "sex"
+    },
+    {
+      "name": "clean_no_popups",
+      "group": "clean",
+      "scenarios": "none",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "clean_all_popups",
+      "group": "popup",
+      "scenarios": "chat_widget,announcement,bottom_banner,session_warning,survey_overlay",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "login_maintenance_notice",
+      "group": "popup",
+      "scenarios": "maintenance_notice,chat_widget",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "popup_appears_mid_form",
+      "group": "popup",
+      "scenarios": "session_warning_late,chat_widget",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "slow_drug_and_form_search",
+      "group": "edge",
+      "scenarios": "slow_drug_search,slow_forms",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "random_element_ids",
+      "group": "edge",
+      "scenarios": "random_ids",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "native_date_picker",
+      "group": "edge",
+      "scenarios": "native_dates",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "custom_state_dropdown",
+      "group": "edge",
+      "scenarios": "state_not_prefilled",
+      "record": "P003_clean_hyphen_name",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "flaky_start_retry",
+      "group": "edge",
+      "scenarios": "flaky_start",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "session_expiry_relogin",
+      "group": "edge",
+      "scenarios": "session_expiry",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "kitchen_sink",
+      "group": "edge",
+      "scenarios": "chat_widget,announcement,bottom_banner,session_warning,survey_overlay,maintenance_notice,slow_drug_search,slow_forms,random_ids,native_dates,state_not_prefilled,flaky_start,session_expiry",
+      "record": "P003_clean_hyphen_name",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "medication_by_ndc",
+      "group": "clean",
+      "overrides": {
+        "medication_search": "57894035001"
+      },
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "start_request_fails",
+      "group": "edge",
+      "scenarios": "start_fails",
+      "expect": "FAILED"
+    },
+    {
+      "name": "duplicate_patient_dialog",
+      "group": "edge",
+      "scenarios": "duplicate_patient",
+      "expect": "ESCALATED",
+      "field": "patient"
+    },
+    {
+      "name": "no_forms_found",
+      "group": "edge",
+      "scenarios": "no_forms",
+      "expect": "ESCALATED",
+      "field": "form"
+    },
+    {
+      "name": "form_policy_clarify",
+      "group": "edge",
+      "args": [
+        "--form-policy",
+        "clarify"
+      ],
+      "expect": "ESCALATED",
+      "field": "form"
+    },
+    {
+      "name": "ambiguous_medication",
+      "group": "portal_reject",
+      "overrides": {
+        "medication_search": "Humira"
+      },
+      "expect": "ESCALATED",
+      "field": "medication_search"
+    },
+    {
+      "name": "unknown_medication",
+      "group": "portal_reject",
+      "overrides": {
+        "medication_search": "Notarealdrug"
+      },
+      "expect": "ESCALATED",
+      "field": "medication_search"
+    },
+    {
+      "name": "unknown_ndc",
+      "group": "portal_reject",
+      "overrides": {
+        "medication_search": "12341111111"
+      },
+      "expect": "ESCALATED",
+      "field": "medication_search"
+    },
+    {
+      "name": "missing_medication",
+      "group": "validation",
+      "overrides": {
+        "medication_search": null
+      },
+      "expect": "ESCALATED",
+      "field": "medication_search"
+    },
+    {
+      "name": "ndc_wrong_length",
+      "group": "validation",
+      "overrides": {
+        "medication_search": "578940350"
+      },
+      "expect": "ESCALATED",
+      "field": "medication_search"
+    },
+    {
+      "name": "name_with_symbols",
+      "group": "validation",
+      "overrides": {
+        "first_name": "T3st"
+      },
+      "expect": "ESCALATED",
+      "field": "first_name"
+    },
+    {
+      "name": "name_trailing_space",
+      "group": "validation",
+      "overrides": {
+        "last_name": "Test "
+      },
+      "expect": "ESCALATED",
+      "field": "last_name"
+    },
+    {
+      "name": "sex_lowercase",
+      "group": "validation",
+      "overrides": {
+        "sex": "f"
+      },
+      "expect": "ESCALATED",
+      "field": "sex"
+    },
+    {
+      "name": "dob_iso_format",
+      "group": "validation",
+      "overrides": {
+        "date_of_birth": "1986-11-13"
+      },
+      "expect": "ESCALATED",
+      "field": "date_of_birth"
+    },
+    {
+      "name": "dob_in_future",
+      "group": "validation",
+      "overrides": {
+        "date_of_birth": "01/01/2027"
+      },
+      "expect": "ESCALATED",
+      "field": "date_of_birth"
+    },
+    {
+      "name": "dob_age_over_120",
+      "group": "validation",
+      "overrides": {
+        "date_of_birth": "01/01/1900"
+      },
+      "expect": "ESCALATED",
+      "field": "date_of_birth"
+    },
+    {
+      "name": "dob_impossible_date",
+      "group": "validation",
+      "overrides": {
+        "date_of_birth": "02/30/1986"
+      },
+      "expect": "ESCALATED",
+      "field": "date_of_birth"
+    },
+    {
+      "name": "zip_plus_four",
+      "group": "validation",
+      "overrides": {
+        "patient_zip": "74055-1234"
+      },
+      "expect": "ESCALATED",
+      "field": "patient_zip"
+    },
+    {
+      "name": "state_full_name",
+      "group": "validation",
+      "overrides": {
+        "insurance_state": "Oklahoma"
+      },
+      "expect": "ESCALATED",
+      "field": "insurance_state"
+    },
+    {
+      "name": "state_lowercase",
+      "group": "validation",
+      "overrides": {
+        "insurance_state": "ok"
+      },
+      "expect": "ESCALATED",
+      "field": "insurance_state"
+    },
+    {
+      "name": "bin_with_letters",
+      "group": "validation",
+      "overrides": {
+        "rx_bin": "61O602"
+      },
+      "expect": "ESCALATED",
+      "field": "rx_bin"
+    },
+    {
+      "name": "bin_as_json_number",
+      "group": "validation",
+      "overrides": {
+        "rx_bin": 610602
+      },
+      "expect": "ESCALATED",
+      "field": "rx_bin"
+    },
+    {
+      "name": "pcn_bad_chars",
+      "group": "validation",
+      "overrides": {
+        "rx_pcn": "NV-T"
+      },
+      "expect": "ESCALATED",
+      "field": "rx_pcn"
+    },
+    {
+      "name": "group_with_space",
+      "group": "validation",
+      "overrides": {
+        "rx_group": "GRP 4421"
+      },
+      "expect": "ESCALATED",
+      "field": "rx_group"
+    },
+    {
+      "name": "payer_eligibility_offer",
+      "group": "edge",
+      "scenarios": "payer_eligibility,chat_widget",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "therapeutic_alternatives_keep_drug",
+      "group": "edge",
+      "scenarios": "therapeutic_alternatives,chat_widget",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "existing_pa_active",
+      "group": "edge",
+      "scenarios": "existing_pa,chat_widget",
+      "expect": "ESCALATED",
+      "field": "patient"
+    },
+    {
+      "name": "existing_pa_expired",
+      "group": "edge",
+      "scenarios": "existing_pa_expired,chat_widget",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "lamar_post_start_states",
+      "group": "edge",
+      "scenarios": "payer_eligibility,therapeutic_alternatives,existing_pa_expired,chat_widget,random_ids",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "request_page_load_error_reload",
+      "group": "edge",
+      "scenarios": "request_page_error,chat_widget",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "native_confirm_dialog",
+      "group": "edge",
+      "scenarios": "native_confirm,chat_widget",
+      "expect": "ESCALATED",
+      "field": "portal"
+    },
+    {
+      "name": "skip_forms_for_other_states",
+      "group": "edge",
+      "scenarios": "other_state_forms_first,chat_widget",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "review_page_then_submit",
+      "group": "edge",
+      "scenarios": "review_step,chat_widget",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "review_page_late_validation",
+      "group": "edge",
+      "scenarios": "review_step,review_validation,chat_widget",
+      "expect": "ESCALATED",
+      "field": "patient_zip",
+      "note": "The review page rejects a valid-looking ZIP only on Submit; nothing is created and the agent escalates the field."
+    },
+    {
+      "name": "review_page_flaky_submit",
+      "group": "edge",
+      "scenarios": "review_step,flaky_start,chat_widget",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "medical_bad_npi_luhn",
+      "group": "validation (brief Section 4 shape)",
+      "record_inline": {
+        "case_id": "M001_brief_section4_example",
+        "first_name": "Maria",
+        "last_name": "Gonzalez",
+        "date_of_birth": "1984-03-22",
+        "sex": "F",
+        "payer_name": "Aetna",
+        "member_id": "W123456789",
+        "group_number": "GRP-44821",
+        "subscriber_relationship": "self",
+        "provider_npi": "1003000127",
+        "service_date": "2026-11-10",
+        "cpt_code": "97110",
+        "icd10_code": "M54.50",
+        "place_of_service": "11",
+        "urgency": "standard"
+      },
+      "expect": "ESCALATED",
+      "field": "provider_npi"
+    },
+    {
+      "name": "medical_member_id_format",
+      "group": "validation (brief Section 4 shape)",
+      "record_inline": {
+        "case_id": "M001_brief_section4_example",
+        "first_name": "Maria",
+        "last_name": "Gonzalez",
+        "date_of_birth": "1984-03-22",
+        "sex": "F",
+        "payer_name": "Aetna",
+        "member_id": "123456789",
+        "group_number": "GRP-44821",
+        "subscriber_relationship": "self",
+        "provider_npi": "1003000126",
+        "service_date": "2026-11-10",
+        "cpt_code": "97110",
+        "icd10_code": "M54.50",
+        "place_of_service": "11",
+        "urgency": "standard"
+      },
+      "expect": "ESCALATED",
+      "field": "member_id"
+    },
+    {
+      "name": "medical_service_date_past",
+      "group": "validation (brief Section 4 shape)",
+      "record_inline": {
+        "case_id": "M001_brief_section4_example",
+        "first_name": "Maria",
+        "last_name": "Gonzalez",
+        "date_of_birth": "1984-03-22",
+        "sex": "F",
+        "payer_name": "Aetna",
+        "member_id": "W123456789",
+        "group_number": "GRP-44821",
+        "subscriber_relationship": "self",
+        "provider_npi": "1003000126",
+        "service_date": "2026-10-01",
+        "cpt_code": "97110",
+        "icd10_code": "M54.50",
+        "place_of_service": "11",
+        "urgency": "standard"
+      },
+      "expect": "ESCALATED",
+      "field": "service_date"
+    },
+    {
+      "name": "medical_service_date_too_far",
+      "group": "validation (brief Section 4 shape)",
+      "record_inline": {
+        "case_id": "M001_brief_section4_example",
+        "first_name": "Maria",
+        "last_name": "Gonzalez",
+        "date_of_birth": "1984-03-22",
+        "sex": "F",
+        "payer_name": "Aetna",
+        "member_id": "W123456789",
+        "group_number": "GRP-44821",
+        "subscriber_relationship": "self",
+        "provider_npi": "1003000126",
+        "service_date": "2027-06-01",
+        "cpt_code": "97110",
+        "icd10_code": "M54.50",
+        "place_of_service": "11",
+        "urgency": "standard"
+      },
+      "expect": "ESCALATED",
+      "field": "service_date"
+    },
+    {
+      "name": "medical_icd10_format",
+      "group": "validation (brief Section 4 shape)",
+      "record_inline": {
+        "case_id": "M001_brief_section4_example",
+        "first_name": "Maria",
+        "last_name": "Gonzalez",
+        "date_of_birth": "1984-03-22",
+        "sex": "F",
+        "payer_name": "Aetna",
+        "member_id": "W123456789",
+        "group_number": "GRP-44821",
+        "subscriber_relationship": "self",
+        "provider_npi": "1003000126",
+        "service_date": "2026-11-10",
+        "cpt_code": "97110",
+        "icd10_code": "54.50",
+        "place_of_service": "11",
+        "urgency": "standard"
+      },
+      "expect": "ESCALATED",
+      "field": "icd10_code"
+    },
+    {
+      "name": "medical_cpt_not_5_digits",
+      "group": "validation (brief Section 4 shape)",
+      "record_inline": {
+        "case_id": "M001_brief_section4_example",
+        "first_name": "Maria",
+        "last_name": "Gonzalez",
+        "date_of_birth": "1984-03-22",
+        "sex": "F",
+        "payer_name": "Aetna",
+        "member_id": "W123456789",
+        "group_number": "GRP-44821",
+        "subscriber_relationship": "self",
+        "provider_npi": "1003000126",
+        "service_date": "2026-11-10",
+        "cpt_code": "9711",
+        "icd10_code": "M54.50",
+        "place_of_service": "11",
+        "urgency": "standard"
+      },
+      "expect": "ESCALATED",
+      "field": "cpt_code"
+    },
+    {
+      "name": "medical_child_without_subscriber",
+      "group": "validation (brief Section 4 shape)",
+      "record_inline": {
+        "case_id": "M001_brief_section4_example",
+        "first_name": "Maria",
+        "last_name": "Gonzalez",
+        "date_of_birth": "1984-03-22",
+        "sex": "F",
+        "payer_name": "Aetna",
+        "member_id": "W123456789",
+        "group_number": "GRP-44821",
+        "subscriber_relationship": "child",
+        "provider_npi": "1003000126",
+        "service_date": "2026-11-10",
+        "cpt_code": "97110",
+        "icd10_code": "M54.50",
+        "place_of_service": "11",
+        "urgency": "standard"
+      },
+      "expect": "ESCALATED",
+      "field": "subscriber_name"
+    },
+    {
+      "name": "medical_urgency_unknown",
+      "group": "validation (brief Section 4 shape)",
+      "record_inline": {
+        "case_id": "M001_brief_section4_example",
+        "first_name": "Maria",
+        "last_name": "Gonzalez",
+        "date_of_birth": "1984-03-22",
+        "sex": "F",
+        "payer_name": "Aetna",
+        "member_id": "W123456789",
+        "group_number": "GRP-44821",
+        "subscriber_relationship": "self",
+        "provider_npi": "1003000126",
+        "service_date": "2026-11-10",
+        "cpt_code": "97110",
+        "icd10_code": "M54.50",
+        "place_of_service": "11",
+        "urgency": "urgent"
+      },
+      "expect": "ESCALATED",
+      "field": "urgency"
+    },
+    {
+      "name": "medical_missing_payer",
+      "group": "validation (brief Section 4 shape)",
+      "record_inline": {
+        "case_id": "M001_brief_section4_example",
+        "first_name": "Maria",
+        "last_name": "Gonzalez",
+        "date_of_birth": "1984-03-22",
+        "sex": "F",
+        "member_id": "W123456789",
+        "group_number": "GRP-44821",
+        "subscriber_relationship": "self",
+        "provider_npi": "1003000126",
+        "service_date": "2026-11-10",
+        "cpt_code": "97110",
+        "icd10_code": "M54.50",
+        "place_of_service": "11",
+        "urgency": "standard"
+      },
+      "expect": "ESCALATED",
+      "field": "payer_name"
+    },
+    {
+      "name": "B_P001_trace_exact",
+      "portal": "b",
+      "group": "portal_b sample",
+      "record": "P001_trace_exact",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "B_P002_clean_male_other_bin",
+      "portal": "b",
+      "group": "portal_b sample",
+      "record": "P002_clean_male_other_bin",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "B_P003_clean_hyphen_name",
+      "portal": "b",
+      "group": "portal_b sample",
+      "record": "P003_clean_hyphen_name",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "B_P004_bad_dob_and_zip",
+      "portal": "b",
+      "group": "portal_b sample",
+      "record": "P004_bad_dob_and_zip",
+      "expect": "ESCALATED",
+      "field": "date_of_birth"
+    },
+    {
+      "name": "B_P005_missing_sex_bad_bin",
+      "portal": "b",
+      "group": "portal_b sample",
+      "record": "P005_missing_sex_bad_bin",
+      "expect": "ESCALATED",
+      "field": "sex"
+    },
+    {
+      "name": "B_all_popups_slow_lookup",
+      "portal": "b",
+      "group": "portal_b popup",
+      "scenarios": "cookie_banner,idle_modal,feedback_modal,slow_lookup",
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "B_sex_x_unknown_other",
+      "portal": "b",
+      "group": "portal_b clean",
+      "overrides": {
+        "sex": "X"
+      },
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "B_portal_rejects_bin",
+      "portal": "b",
+      "group": "portal_b edge",
+      "scenarios": "unknown_plan",
+      "expect": "ESCALATED",
+      "field": "rx_bin"
+    },
+    {
+      "name": "B_attestation_required",
+      "portal": "b",
+      "group": "portal_b edge",
+      "scenarios": "attestation",
+      "expect": "ESCALATED",
+      "field": "portal"
+    },
+    {
+      "name": "B_duplicate_request_dialog",
+      "portal": "b",
+      "group": "portal_b edge",
+      "scenarios": "duplicate_request",
+      "expect": "ESCALATED",
+      "field": "patient"
+    },
+    {
+      "name": "B_ambiguous_medication",
+      "portal": "b",
+      "group": "portal_b edge",
+      "overrides": {
+        "medication_search": "Humira"
+      },
+      "expect": "ESCALATED",
+      "field": "medication_search"
+    },
+    {
+      "name": "B_plan_rejects_submit",
+      "portal": "b",
+      "group": "portal_b edge",
+      "scenarios": "plan_rejects",
+      "expect": "FAILED"
+    },
+    {
+      "name": "name_internal_spaces",
+      "group": "valid boundary",
+      "overrides": {
+        "first_name": "Mary  Ann"
+      },
+      "expect": "SUCCESS"
+    },
+    {
+      "name": "B_name_internal_spaces",
+      "portal": "b",
+      "group": "valid boundary",
+      "overrides": {
+        "first_name": "Mary  Ann"
+      },
+      "expect": "SUCCESS"
+    }
+  ],
+  "repeatability": {
+    "runs": 3,
+    "cases": [
+      "P001_trace_exact",
+      "P002_clean_male_other_bin",
+      "clean_all_popups",
+      "kitchen_sink",
+      "flaky_start_retry",
+      "duplicate_patient_dialog",
+      "popup_appears_mid_form",
+      "B_P001_trace_exact",
+      "B_all_popups_slow_lookup",
+      "review_page_then_submit",
+      "lamar_post_start_states"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "case_id": "P001_trace_exact",
+  "notes": "Exactly the values entered in the Portal A trace. Clean; should reach the form list and Start PA.",
+  "medication_search": "Simponi Aria",
+  "first_name": "Test",
+  "last_name": "Test",
+  "sex": "F",
+  "date_of_birth": "11/13/1986",
+  "patient_zip": "74055",
+  "insurance_state": "OK",
+  "rx_bin": "610602",
+  "rx_pcn": "NVT",
+  "rx_group": ""
+}

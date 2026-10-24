@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% block title %}Start a New Request{% endblock %}
+{% block page %}formpick{% endblock %}
+{% block content %}
+<h1 class="page-title">Start a New Request</h1>
+<p class="lede">Enter the patient's prescription information and then select a form to start a new request. It's helpful
+  to have the patient's drug insurance information (BIN, PCN, RxGroup) handy for accurate form selection.</p>
+
+<section class="card" data-card="medication">
+  <h2>Medication</h2>
+  <p>Enter the medication name or NDC (National Drug Code) number.</p>
+  <div class="field combo" data-field="medication_search">
+    <label for="{{ fid('drug-search') }}">Search for medication name or NDC number</label>
+    <input type="text" id="{{ fid('drug-search') }}" role="combobox" aria-autocomplete="list" aria-expanded="false"
+           aria-controls="{{ fid('drug-list') }}" autocomplete="off" data-combo-input>
+    <ul class="listbox" id="{{ fid('drug-list') }}" role="listbox" hidden data-combo-list></ul>
+  </div>
+</section>
+
+<section class="card" data-card="diagnosis" hidden>
+  <h2>Primary Diagnosis</h2>
+  <p>Entering this information will auto-fill the diagnosis in the rest of this prior authorization.</p>
+  <div class="field combo" data-field="diagnosis">
+    <label for="{{ fid('dx-search') }}">Diagnosis</label>
+    <input type="text" id="{{ fid('dx-search') }}" role="combobox" aria-autocomplete="list" aria-expanded="false"
+           aria-controls="{{ fid('dx-list') }}" autocomplete="off" data-combo-input>
+    <span class="search-icon" aria-hidden="true">&#9906;</span>
+    <ul class="listbox" id="{{ fid('dx-list') }}" role="listbox" hidden data-combo-list></ul>
+  </div>
+  <div class="card-actions">
+    <button type="button" class="btn-text" data-action="clear-dx">Clear</button>
+    <span class="spacer"></span>
+    <button type="button" class="btn-text" id="{{ fid('skip-diagnosis') }}" data-action="skip-dx">Enter This Later</button>
+    <button type="button" class="btn-primary" data-action="continue-dx" disabled>Continue</button>
+  </div>
+</section>
+
+<section class="card" data-card="patient" hidden>
+  <h2>Patient Information</h2>
+  <p>Entering the patient information here will help with form selection and will pre-fill the form.</p>
+  <p class="small"><b>Fields with an <span class="req">*</span> are required</b></p>
+  <button type="button" class="pill-btn" data-action="address-book" aria-haspopup="true">Patient Address Book &#9662;</button>
+  <div class="row">
+    <div class="field" data-field="first_name">
+      <label for="{{ fid('first-name') }}">First Name<span class="req" aria-hidden="true">*</span></label>
+      <input type="text" id="{{ fid('first-name') }}" aria-required="true" autocomplete="off">
+    </div>
+    <div class="field" data-field="last_name">
+      <label for="{{ fid('last-name') }}">Last Name<span class="req" aria-hidden="true">*</span></label>
+      <input type="text" id="{{ fid('last-name') }}" aria-required="true" autocomplete="off">
+    </div>
+  </div>
+  <fieldset class="radios" data-field="sex">
+    <legend>Gender<span class="req" aria-hidden="true">*</span></legend>
+    <label class="radio"><input type="radio" name="sex" value="M" id="{{ fid('sex-m') }}"> Male</label>
+    <label class="radio"><input type="radio" name="sex" value="F" id="{{ fid('sex-f') }}"> Female</label>
+    <label class="radio"><input type="radio" name="sex" value="X" id="{{ fid('sex-x') }}"> Unspecified</label>
+  </fieldset>
+  <div class="field" data-field="date_of_birth">
+    <label for="{{ fid('dob') }}">Date of Birth<span class="req" aria-hidden="true">*</span></label>
+    {% if on('native_dates') %}
+    <input type="date" id="{{ fid('dob') }}" aria-required="true">
+    {% else %}
+    <input type="text" id="{{ fid('dob') }}" aria-required="true" placeholder="MM/DD/YYYY" autocomplete="off">
+    {% endif %}
+  </div>
+  <div class="row">
+    <div class="field" data-field="patient_zip">
+      <label for="{{ fid('zip') }}">Patient Zip Code<span class="req" aria-hidden="true">*</span></label>
+      <input type="text" id="{{ fid('zip') }}" aria-required="true" inputmode="numeric" autocomplete="off">
+    </div>
+    <div class="field select custom" data-field="insurance_state" id="{{ fid('patient-demographics-state-row') }}" hidden>
+      <span class="flabel" id="{{ fid('pt-state-label') }}">Patient Insurance State<span class="req" aria-hidden="true">*</span></span>
+      <button type="button" class="dd-button" role="combobox" aria-haspopup="listbox" aria-expanded="false"
+              aria-required="true" aria-labelledby="{{ fid('pt-state-label') }}" aria-controls="{{ fid('pt-state-list') }}"
+              data-dropdown="patient"><span data-value-text>Select</span></button>
+      <div class="dd-popup" data-popup hidden>
+        <input type="text" aria-label="Search states" autocomplete="off" data-dd-search>
+        <ul role="listbox" id="{{ fid('pt-state-list') }}" aria-labelledby="{{ fid('pt-state-label') }}"></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-actions">
+    <button type="button" class="btn-text" data-action="clear-patient">Clear</button>
+    <span class="spacer"></span>
+    <button type="button" class="btn-text" data-action="skip-patient">Enter This Later</button>
+    <button type="button" class="btn-primary" id="{{ fid('submit-patient-demographics') }}" data-action="continue-patient">Continue</button>
+  </div>
+</section>
+
+<section class="card" data-card="insurance" hidden>
+  <div class="card-head"><h2>Patient Insurance</h2><a href="#" class="btn-text small">&#9432; More Info</a></div>
+  <p>Enter the patient's drug insurance ID card to find the most accurate form. Alternatively, you can enter a patient's
+    insurance plan or PBM name.</p>
+  <fieldset class="radios stacked" aria-label="How to search for insurance">
+    <label class="radio"><input type="radio" name="ins-option" value="card" checked> <b>Option 1: Drug insurance ID card</b></label>
+    <div class="indent" data-option="card">
+      <div class="field select custom" data-field="insurance_state_ins">
+        <span class="flabel" id="{{ fid('ins-state-label') }}">Patient Insurance State</span>
+        <button type="button" class="dd-button" role="combobox" aria-haspopup="listbox" aria-expanded="false"
+                aria-labelledby="{{ fid('ins-state-label') }}" aria-controls="{{ fid('ins-state-list') }}"
+                id="{{ fid('insurance-search-state-row') }}" data-dropdown="insurance"><span data-value-text>Select</span></button>
+        <div class="dd-popup" data-popup hidden>
+          <input type="text" aria-label="Search states" id="{{ fid('insurance-search-state-row-search') }}" data-dd-search autocomplete="off">
+          <ul role="listbox" id="{{ fid('ins-state-list') }}" aria-labelledby="{{ fid('ins-state-label') }}"></ul>
+        </div>
+      </div>
+      <div class="field" data-field="rx_bin">
+        <label for="{{ fid('rx-bin') }}">RxBIN</label>
+        <input type="text" id="{{ fid('rx-bin') }}" inputmode="numeric" autocomplete="off">
+      </div>
+      <p class="hint">For best results, enter the insurance BIN number. Or, <a href="#">search by plan name</a></p>
+      <div class="field" data-field="rx_pcn">
+        <label for="{{ fid('rx-pcn') }}">RxPCN Number</label>
+        <input type="text" id="{{ fid('rx-pcn') }}" autocomplete="off">
+      </div>
+      <div class="field" data-field="rx_group">
+        <label for="{{ fid('rx-group') }}">RxGroup</label>
+        <input type="text" id="{{ fid('rx-group') }}" autocomplete="off">
+      </div>
+    </div>
+    <label class="radio"><input type="radio" name="ins-option" value="plan"> <b>Option 2: Insurance plan or PBM name</b></label>
+    <div class="indent" data-option="plan">
+      <div class="field">
+        <label for="{{ fid('plan-name') }}">Plan or PBM Name</label>
+        <input type="text" id="{{ fid('plan-name') }}" disabled>
+      </div>
+    </div>
+  </fieldset>
+</section>
+
+<section class="forms-section" data-card="forms">
+  <h2 class="section-title">Select a Form</h2>
+  <div class="card form-results" data-results aria-live="polite">
+    <p class="muted">Form results will display here</p>
+  </div>
+</section>
+<script type="application/json" id="portal-config">{{ cfg|safe }}</script>
+<script type="application/json" id="portal-states">{{ states|tojson }}</script>
+{% endblock %}
+
+{% block modals %}
+{% if on('session_warning') or on('session_warning_late') %}
+<div class="backdrop" data-modal="session" hidden data-delay="{{ 3500 if on('session_warning_late') else 1000 }}">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="sw-title">
+    <h2 id="sw-title">Your session is about to expire</h2>
+    <p>For your security you will be signed out in 15 seconds. Information on this page will be lost.</p>
+    <div class="modal-actions">
+      <a class="btn-text" href="{{ url_for('logout', reason='timeout') }}">Sign out</a>
+      <button type="button" class="btn-primary" data-close>Stay signed in</button>
+    </div>
+  </div>
+</div>
+{% endif %}
+<div class="backdrop" data-modal="duplicate" hidden>
+  <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="dup-title" aria-describedby="dup-body">
+    <h2 id="dup-title">Possible existing patient</h2>
+    <p id="dup-body">This patient may already exist in your Patient Address Book with an open request for this
+      medication. Starting another request could send a duplicate to the plan.</p>
+    <div class="modal-actions">
+      <button type="button" class="btn-text" data-action="dup-existing">Use existing patient</button>
+      <button type="button" class="btn-primary" data-action="dup-new">Create new patient anyway</button>
+    </div>
+  </div>
+</div>
+<div class="backdrop" data-modal="existing-pa" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="ex-title" aria-describedby="ex-body">
+    <h2 id="ex-title">EXISTING PA INFORMATION</h2>
+    <p id="ex-body" data-existing-body></p>
+    <div class="modal-actions">
+      <button type="button" class="btn-text" data-action="existing-cancel">Cancel</button>
+      <button type="button" class="btn-primary" data-action="existing-new">Continue With New PA</button>
+    </div>
+  </div>
+</div>
+{% if on('survey_overlay') %}
+<div class="backdrop" data-modal="survey" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="sv-title">
+    <h2 id="sv-title">How are we doing?</h2>
+    <p>Tell us about finding the right form. The survey takes about 2 minutes.</p>
+    <div class="modal-actions">
+      <button type="button" class="btn-text" data-close>No thanks</button>
+      <a class="btn-primary" href="#">Take survey</a>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='formpick.js') }}"></script>{% endblock %}

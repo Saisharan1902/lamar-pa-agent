@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Review your request{% endblock %}
+{% block page %}review{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Review your request</h1>
+  <p class="muted">Check the details below. Nothing is created until you click Submit Request.</p>
+  {% if message %}<p role="alert" class="error">{{ message }}</p>{% endif %}
+  <table class="review">
+    <tr><th>Medication</th><td>{{ drug }}</td></tr>
+    <tr><th>Form</th><td>{{ form.title }}</td></tr>
+    <tr><th>First Name</th><td>{{ p.first_name }}</td></tr>
+    <tr><th>Last Name</th><td>{{ p.last_name }}</td></tr>
+    <tr><th>Date of Birth</th><td>{{ p.date_of_birth }}</td></tr>
+    <tr><th>Gender</th><td>{{ {'M': 'Male', 'F': 'Female', 'X': 'Unspecified'}.get(p.sex, '') }}</td></tr>
+    <tr><th>Patient Zip Code</th><td>{{ p.patient_zip }}{% if errors.patient_zip %} <span class="error" role="alert">{{ errors.patient_zip }}</span>{% endif %}</td></tr>
+    <tr><th>Patient Insurance State</th><td>{{ states.get(ins.insurance_state, ins.insurance_state) }}</td></tr>
+    <tr><th>RxBIN / RxPCN / RxGroup</th><td>{{ ins.rx_bin }} / {{ ins.rx_pcn or '-' }} / {{ ins.rx_group or '-' }}</td></tr>
+  </table>
+  <form method="post" class="review-actions">
+    <a class="btn-outline" href="{{ url_for('formpick') }}">Start over</a>
+    <button type="submit" class="btn-primary">Submit Request</button>
+  </form>
+</section>
+{% endblock %}

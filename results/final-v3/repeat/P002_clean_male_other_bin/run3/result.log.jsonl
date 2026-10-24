@@ -1,0 +1,25 @@
+{"action": "start", "portal": "http://127.0.0.1:63727", "seq": 1, "today": "2026-11-02"}
+{"action": "validated", "fields": ["date_of_birth", "first_name", "insurance_state", "last_name", "medication_search", "patient_zip", "rx_bin", "rx_group", "rx_pcn", "sex"], "seq": 2}
+{"action": "goto", "seq": 3, "url": "/?test_case=P002_clean_male_other_bin"}
+{"action": "login", "attempt": 1, "seq": 4, "session_expired_notice": false}
+{"action": "click", "button": "Sign In", "purpose": "login", "section": "", "seq": 5}
+{"action": "interruption", "button": "×", "category": "chat_widget", "how": "click", "seq": 6}
+{"action": "fill", "field": "medication_search", "kind": "combobox", "label": "Search for medication name or NDC number", "seq": 7, "value": "Simponi Aria 50MG/4ML solution"}
+{"action": "click", "button": "Enter This Later", "purpose": "skip", "section": "Primary Diagnosis", "seq": 8}
+{"action": "fill", "field": "first_name", "kind": "text", "label": "First Name", "seq": 9, "value": "M***"}
+{"action": "fill", "field": "last_name", "kind": "text", "label": "Last Name", "seq": 10, "value": "E***"}
+{"action": "fill", "field": "sex", "kind": "radio", "label": "Gender", "seq": 11, "value": "Male"}
+{"action": "fill", "field": "date_of_birth", "kind": "text", "label": "Date of Birth", "seq": 12, "value": "**/**/1975"}
+{"action": "fill", "field": "patient_zip", "kind": "text", "label": "Patient Zip Code", "seq": 13, "value": "53703"}
+{"action": "click", "button": "Continue", "purpose": "continue", "section": "Patient Information", "seq": 14}
+{"action": "fill", "field": "rx_bin", "kind": "text", "label": "RxBIN", "seq": 15, "value": "22022"}
+{"action": "fill", "field": "rx_pcn", "kind": "text", "label": "RxPCN Number", "seq": 16, "value": "7104"}
+{"action": "fill", "field": "rx_group", "kind": "text", "label": "RxGroup", "seq": 17, "value": "GRP4421"}
+{"action": "click", "button": "Show 1 More", "purpose": "show_all_forms", "section": "Navitus Health Solutions Commercial Exception to Coverage Request Form", "seq": 18}
+{"action": "forms_found", "api_checked": true, "chosen": "Navitus Health Solutions Commercial Exception to Coverage Request Form", "count": 2, "seq": 19, "skipped_other_state": 1}
+{"action": "ledger", "seq": 20, "state": "submitting"}
+{"action": "click", "button": "Start Request", "purpose": "start_request", "section": "Navitus Health Solutions Commercial Exception to Coverage Request Form", "seq": 21}
+{"action": "interruption", "button": "×", "category": "chat_widget", "how": "click", "seq": 22}
+{"action": "request_verified", "fields": ["date_of_birth", "first_name", "form", "insurance_state", "last_name", "medication_search", "patient_zip", "rx_bin", "rx_group", "rx_pcn", "sex"], "seq": 23}
+{"action": "outcome", "confirmation_id": "2DUZGYZL", "seq": 24, "status": "SUCCESS"}
+{"action": "end", "seq": 25, "status": "SUCCESS"}

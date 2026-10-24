@@ -1,0 +1,32 @@
+{% extends "base.html" %}{% from "_field.html" import text with context %}
+{% block main %}
+<h1>Pharmacy coverage</h1>
+<p>Copy these from the front of the patient's pharmacy benefit card.</p>
+<form method="post" novalidate>
+  {% set i = rid('st') %}{% set e = rid('st-err') %}
+  <div class="row">
+    <label for="{{ i }}">Plan state *</label>
+    <select id="{{ i }}" name="st" required {% if errs.get('st') %}aria-describedby="{{ e }}"{% endif %}>
+      <option value="">Choose a state</option>
+      {% for code, name in states|dictsort(by='value') %}<option value="{{ name }}" {% if f.get('st') == name %}selected{% endif %}>{{ name }}</option>{% endfor %}
+    </select>
+    {% if errs.get('st') %}<p class="err" role="alert" id="{{ e }}">{{ errs['st'] }}</p>{% endif %}
+  </div>
+  {{ text('bin', 'BIN / IIN', f, errs) }}
+  {{ text('pcn', 'Processor control number', f, errs, required=False) }}
+  {{ text('grp', 'Rx group (optional)', f, errs, required=False) }}
+  <div class="actions"><a class="ghost" href="/request/patient">Back</a><button class="btn" type="submit">Next</button></div>
+</form>
+{% endblock %}
+{% block modals %}
+{% if on('idle_modal') %}
+<div class="scrim" id="{{ rid('idle') }}">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Are you still there?">
+    <h2>Are you still there?</h2>
+    <p>For your security we sign you out after a period of inactivity.</p>
+    <div class="actions"><a class="ghost" href="/signin">Sign me out</a>
+      <button class="btn" type="button" onclick="document.querySelector('.scrim').remove()">I'm still here</button></div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

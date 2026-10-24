@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Log in to MedRoute</h1>
+<form method="post">
+  {% set u = rid('uid') %}{% set p = rid('pc') %}
+  <div class="row"><label for="{{ u }}">User ID</label><input type="text" id="{{ u }}" name="uid" autocomplete="username"></div>
+  <div class="row"><label for="{{ p }}">Passcode</label><input type="password" id="{{ p }}" name="pc"></div>
+  {% if err %}<p class="err" role="alert">{{ err }}</p>{% endif %}
+  <div class="actions"><button class="btn" type="submit">Log in</button></div>
+</form>
+{% endblock %}

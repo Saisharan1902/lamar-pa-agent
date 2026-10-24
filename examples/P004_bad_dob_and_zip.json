@@ -1,0 +1,14 @@
+{
+  "case_id": "P004_bad_dob_and_zip",
+  "notes": "Should ESCALATE: DOB not MM/DD/YYYY (portal regex rejects it) and ZIP is 4 digits.",
+  "medication_search": "Simponi Aria",
+  "first_name": "Priya",
+  "last_name": "Patel",
+  "sex": "F",
+  "date_of_birth": "1986-13-11",
+  "patient_zip": "7405",
+  "insurance_state": "OK",
+  "rx_bin": "610602",
+  "rx_pcn": "NVT",
+  "rx_group": ""
+}

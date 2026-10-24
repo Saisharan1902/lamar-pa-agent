@@ -1,0 +1,9 @@
+{% macro text(name, label, f, errs, required=True, hint='') %}
+{% set i = rid(name) %}{% set e = rid(name ~ '-err') %}
+<div class="row">
+  <label for="{{ i }}">{{ label }}{% if required %} *{% endif %}</label>
+  <input type="text" id="{{ i }}" name="{{ name }}" value="{{ f.get(name, '') }}" {% if required %}required{% endif %}
+         {% if errs.get(name) %}aria-invalid="true" aria-describedby="{{ e }}"{% endif %}>
+  {% if errs.get(name) %}<p class="err" role="alert" id="{{ e }}">{{ errs[name] }}</p>{% endif %}
+</div>
+{% endmacro %}

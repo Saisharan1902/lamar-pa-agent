@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Medication</h1>
+<form method="post" novalidate>
+  {% set i = rid('drug') %}{% set lb = rid('drug-list') %}{% set e = rid('drug-err') %}
+  <div class="row">
+    <label for="{{ i }}">Drug to authorize *</label>
+    <input type="text" id="{{ i }}" name="drug" role="combobox" aria-autocomplete="list" aria-expanded="false"
+           aria-controls="{{ lb }}" autocomplete="off" required value="{{ f.get('drug', '') }}"
+           {% if errs.get('drug') %}aria-describedby="{{ e }}"{% endif %}>
+    <input type="hidden" name="drug_pick" value="{{ f.get('drug_pick', '') }}">
+    <ul class="opts" id="{{ lb }}" role="listbox" hidden></ul>
+    {% if errs.get('drug') %}<p class="err" role="alert" id="{{ e }}">{{ errs['drug'] }}</p>{% endif %}
+  </div>
+  <div class="actions"><a class="ghost" href="/request/coverage">Back</a><button class="btn" type="submit">Review request</button></div>
+</form>
+<script>
+  const box = document.querySelector('[role=combobox]'), list = document.getElementById(box.getAttribute('aria-controls'));
+  const pick = document.querySelector('[name=drug_pick]');
+  let seq = 0;
+  box.addEventListener('input', async () => {
+    pick.value = ''; const my = ++seq;
+    const res = await fetch('/api/drugs?q=' + encodeURIComponent(box.value)); const items = await res.json();
+    if (my !== seq) return;
+    list.innerHTML = '';
+    items.forEach((d) => { const li = document.createElement('li'); li.setAttribute('role', 'option'); li.textContent = d;
+      li.addEventListener('click', () => { box.value = d; pick.value = d; list.hidden = true; box.setAttribute('aria-expanded', 'false'); });
+      list.appendChild(li); });
+    if (!items.length && box.value.length >= 2) { const li = document.createElement('li'); li.textContent = 'No matches'; list.appendChild(li); }
+    list.hidden = !list.children.length; box.setAttribute('aria-expanded', String(!list.hidden));
+  });
+</script>
+{% endblock %}

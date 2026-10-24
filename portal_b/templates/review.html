@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Review and submit</h1>
+<section><h2>Patient</h2><dl><dt>Name</dt><dd>{{ r.fn }} {{ r.ln }}</dd><dt>Date of birth</dt><dd>{{ r.dob }}</dd>
+  <dt>Sex</dt><dd>{{ sex }}</dd><dt>Home ZIP</dt><dd>{{ r.zp }}</dd></dl><a href="/request/patient">Edit patient</a></section>
+<section><h2>Coverage</h2><dl><dt>Plan state</dt><dd>{{ r.st }}</dd><dt>BIN / IIN</dt><dd>{{ r.bin }}</dd>
+  <dt>PCN</dt><dd>{{ r.pcn or '-' }}</dd><dt>Rx group</dt><dd>{{ r.grp or '-' }}</dd></dl><a href="/request/coverage">Edit coverage</a></section>
+<section><h2>Medication</h2><dl><dt>Drug</dt><dd>{{ r.drug }}</dd></dl><a href="/request/medication">Edit medication</a></section>
+<form method="post" novalidate>
+  {% if on('attestation') %}
+  {% set i = rid('attest') %}{% set e = rid('attest-err') %}
+  <div class="row"><label><input type="checkbox" id="{{ i }}" name="attest" value="yes" required> I attest that this information is accurate and complete *</label>
+  {% if errs.get('attest') %}<p class="err" role="alert" id="{{ e }}">{{ errs['attest'] }}</p>{% endif %}</div>
+  {% endif %}
+  <div class="actions"><a class="ghost" href="/request/medication">Back</a><button class="ghost" type="button">Save draft</button><button class="btn" type="submit">Submit request</button></div>
+</form>
+{% endblock %}
+{% block modals %}
+{% if on('feedback_modal') %}
+<div class="scrim"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="{{ rid('fb') }}">
+  <h2>Quick feedback</h2><p>How was your experience creating this request?</p>
+  <div class="actions"><a class="ghost" href="#">Take the survey</a><button class="btn" type="button" onclick="this.closest('.scrim').remove()">Maybe later</button></div>
+</div></div>
+{% endif %}
+{% if on('duplicate_request') %}
+<div class="scrim"><div class="modal" role="dialog" aria-modal="true">
+  <h2>Possible duplicate</h2><p>An open request already exists for this patient and drug.</p>
+  <div class="actions"><a class="ghost" href="#">View existing request</a><button class="btn" type="button" onclick="this.closest('.scrim').remove()">Submit anyway</button></div>
+</div></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ r.patient.first_name }} {{ r.patient.last_name }} (Key: {{ key }}){% endblock %}
+{% block page %}request{% endblock %}
+{% block mainclass %}wide{% endblock %}
+{% block content %}
+<div class="request-layout">
+  <div class="request-actions">
+    <button type="button" class="btn-outline" disabled>Send To Plan</button>
+    <button type="button" class="btn-primary block">Send To Prescriber</button>
+    <button type="button" class="btn-outline">Save</button>
+    <button type="button" class="btn-outline">Archive</button>
+    <button type="button" class="btn-outline">Other Actions</button>
+    <div class="notes"><b>Notes</b><p class="small">Physician/Prescriber's office<br>Created by you, less than a minute ago</p></div>
+  </div>
+  <div class="request-main">
+    <section class="request-header">
+      <h1>{{ r.patient.first_name }} {{ r.patient.last_name }} (Key: <span data-key>{{ key }}</span>)</h1>
+      <span class="small">Need Help? Call us at (866) 452-5017</span>
+    </section>
+    <section class="card request-summary">
+      <dl>
+        <div><dt>Status</dt><dd>New (Not sent to plan)</dd></div>
+        <div><dt>Drug</dt><dd>{{ r.drug }}</dd></div>
+        <div><dt>Form</dt><dd>{{ r.form.title }}</dd></div>
+        <div><dt>RxBIN / RxPCN / RxGroup</dt><dd>{{ r.insurance.rx_bin }} / {{ r.insurance.rx_pcn or '-' }} / {{ r.insurance.rx_group or '-' }}</dd></div>
+      </dl>
+    </section>
+    <section class="card">
+      <h2>Prescriber Instructions</h2>
+      <p>This is a {{ r.form.title }}. Complete the fields below, then click the "Send to Plan" button to submit.</p>
+    </section>
+    <section class="card">
+      <h2>Patient Information</h2>
+      <dl class="pt">
+        <div><dt>Name</dt><dd>{{ r.patient.first_name }} {{ r.patient.last_name }}</dd></div>
+        <div><dt>Date of Birth</dt><dd>{{ r.patient.date_of_birth }}</dd></div>
+        <div><dt>Gender</dt><dd>{{ {'M': 'Male', 'F': 'Female', 'X': 'Unspecified'}[r.patient.sex] }}</dd></div>
+        <div><dt>Zip Code</dt><dd>{{ r.patient.patient_zip }}</dd></div>
+        <div><dt>Insurance State</dt><dd>{{ states[r.patient.insurance_state] }}</dd></div>
+      </dl>
+    </section>
+  </div>
+</div>
+{% endblock %}

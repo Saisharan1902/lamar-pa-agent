@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Request - CoverRx{% endblock %}
+{% block page %}request{% endblock %}
+{% block content %}
+<div role="alert" class="notice error">
+  <b>Error loading Request</b>
+  <p>Unable to load key {{ key }}. Please refresh the page or try again later.</p>
+</div>
+{% endblock %}

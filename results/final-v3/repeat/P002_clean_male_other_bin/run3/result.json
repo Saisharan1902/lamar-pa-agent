@@ -1,0 +1,55 @@
+{
+  "confirmation_id": "2DUZGYZL",
+  "escalation": null,
+  "fields_filled": {
+    "date_of_birth": {
+      "label": "Date of Birth",
+      "value": "**/**/1975"
+    },
+    "first_name": {
+      "label": "First Name",
+      "value": "M***"
+    },
+    "last_name": {
+      "label": "Last Name",
+      "value": "E***"
+    },
+    "medication_search": {
+      "label": "Search for medication name or NDC number",
+      "value": "Simponi Aria 50MG/4ML solution"
+    },
+    "patient_zip": {
+      "label": "Patient Zip Code",
+      "value": "53703"
+    },
+    "rx_bin": {
+      "label": "RxBIN",
+      "value": "22022"
+    },
+    "rx_group": {
+      "label": "RxGroup",
+      "value": "GRP4421"
+    },
+    "rx_pcn": {
+      "label": "RxPCN Number",
+      "value": "7104"
+    },
+    "sex": {
+      "label": "Gender",
+      "value": "Male"
+    }
+  },
+  "form_selection": {
+    "alternatives": [],
+    "candidates": 2,
+    "checked_against": "page and portal data",
+    "chosen": "Navitus Health Solutions Commercial Exception to Coverage Request Form",
+    "policy": "first",
+    "position": 1,
+    "skipped_other_state": [
+      "Navitus Health Solutions Texas Medicaid Simponi Prior Authorization Form"
+    ]
+  },
+  "reason": "Prior authorization request created; the portal returned its reference number.",
+  "status": "SUCCESS"
+}

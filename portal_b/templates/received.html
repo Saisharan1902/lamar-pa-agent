@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Request received</h1>
+<p>Your request has been submitted to the plan.</p>
+<dl><dt>Reference number</dt><dd>{{ ref }}</dd><dt>Patient</dt><dd>{{ r.fn }} {{ r.ln }}</dd><dt>Drug</dt><dd>{{ r.drug }}</dd></dl>
+<p>Reference number: {{ ref }}</p>
+{% endblock %}
